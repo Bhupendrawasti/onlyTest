@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गाउ खाने कथा</title>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Add html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Css/main.css">
+    <!-- <link rel="stylesheet" href="Css/style.css">-->
+<style>
+        /* Custom styles */
+        .navbar {
+            background: skyblue !important;
+        }
+        .navbar-brand { 
+            display: flex;
+            align-items: center;
+
+        }
+        
+        .navbar-brand h4 {
+            font-family: 'cursive','Carter One';
+            margin-left: 20px;
+            margin-bottom: 0;
+        }
+        .dropdown-menu{
+            background: radial-gradient(rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 0%);
+        }
+        .brand-logo {
+            height: 30px; /* Adjust height as needed */
+            width: auto;
+        }
+        
+  
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: rgb(255, 234, 255);
+            font-size: 16px;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        /* Navbar placeholder styling */
+        #navbar-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .heading-primary {
+            background-color: #4249ed;
+            text-align: center;
+            padding: 15px 10px;
+            color: white;
+            font-size: 1.8em;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            line-height: 1.3;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .heading-secondary {
+            font-weight: 600;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #0f1730;
+            margin: 0.7em 0;
+            display: inline-block;
+            padding: 0 0.7em;
+            transform: skew(-5deg);
+            position: relative;
+        }
+
+        .page {
+            width: 100%;
+            margin: 0 auto;
+            min-height: 50vh;
+            background-color: rgb(255, 234, 255);
+            padding: 15px;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .answer {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-box {
+            width: 100%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .button-box > button {
+            background-color: #0f1730;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 15px 25px;
+            border-radius: 2em;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .heading-primary {
+                font-size: 1.5em;
+                padding: 12px 8px;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .answer {
+                font-size: 1rem;
+            }
+
+            .button-box > button {
+                font-size: 0.9em;
+                padding: 12px 20px;
+            }
+
+            .page {
+                padding: 10px;
+                min-height: 60vh;
+            }
+        }
+
+        @media (min-width: 480px) {
+            .button-box {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .button-box > button {
+                width: auto;
+            }
+        }
+
+        /* Hidden attribution container */
+        .attribution-container {
+            position: absolute;            
+            background-color: rgb(255, 234, 255); 
+            left: -9999px;
+            top: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .download-attribution {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo" href="/index"> <img src="https://bhupendrawasti.com.np/Media/ProfilePicture/Bhupendra.png" alt="Bhupendra Wasti" class="brand-logo"><h4>Bhupendra Wasti</h4> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index"><i class="fa fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-photo"></i> Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/games"><i class="fa fa-play"></i> Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gaukhanekatha"><i class="fa fa-book"></i> Gaukhanekatha</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-wrench"></i> Online Tools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fa fa-mobile"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  
+  
+        <!--End of Navbar -->
+    
+    <div id="box">
+        <!-- Heading -->
+        <h1 class="heading-primary">
+            गाउ खाने कथा
+        </h1>
+
+        <!-- Pages Container -->
+        <div id="pages-container"></div>
+
+        <!-- Navigate and Save -->
+        <div class="button-box">
+            <button class="button-save">
+                Save Question <i class="fa fa-download" aria-hidden="true"></i>
+            </button>
+            <button class="button-next">
+                NEXT <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        
+        let questionsData = [];
+
+        // Function to load JSON data
+        async function loadQuestions() {
+            try {
+                const response = await fetch('https://bhupendrawasti.com.np/data/Gaukhanekatha/data.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load questions data');
+                }
+                questionsData = await response.json();
+                showRandomQuestion();
+            } catch (error) {
+                console.error('Error loading JSON:', error);
+            }
+        }
+
+        // Function to get a random question
+        function getRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questionsData.length);
+            return questionsData[randomIndex];
+        }
+
+        // Function to render a random question
+        function showRandomQuestion() {
+            const randomQuestion = getRandomQuestion();
+            const pagesContainer = document.getElementById('pages-container');
+            if (randomQuestion) {
+                pagesContainer.innerHTML = `
+                    <div class="page">
+                        <h2 class="heading-secondary">Questions</h2>
+                        <div class="question">${randomQuestion.question}</div>
+                        <details class="answer">
+                            <summary>👇 Answer</summary>
+                            <h3>${randomQuestion.answer}</h3>
+                        </details>
+                    </div>
+                `;
+            } else {
+                pagesContainer.innerHTML = `<div class="page"><h2>No questions available!</h2></div>`;
+            }
+        }
+
+        // Function to save the question as an image with heading and attribution
+        function saveQuestionAsImage() {
+            const headingElement = document.querySelector('.heading-primary');
+            const pageElement = document.querySelector('.page');
+            if (headingElement && pageElement) {
+                const headingClone = headingElement.cloneNode(true);
+                const pageClone = pageElement.cloneNode(true);
+
+                const attribution = document.createElement('div');
+                attribution.className = 'download-attribution';
+                attribution.textContent = 'Downloaded from: https://bhupendrawasti.com.np';
+
+                const container = document.createElement('div');
+                container.appendChild(headingClone);
+                container.appendChild(pageClone);
+                container.appendChild(attribution);
+
+                document.body.appendChild(container);
+
+                html2canvas(container, { scale: 2 }).then((canvas) => {
+                    const link = document.createElement('a');
+                    link.download = `question.jpg`;
+                    link.href = canvas.toDataURL('image/jpeg', 1.0);
+                    link.click();
+                    document.body.removeChild(container);
+                });
+            } else {
+                alert('No question to save!');
+            }
+        }
+
+        // Event listeners
+        document.querySelector('.button-next').addEventListener('click', showRandomQuestion);
+        document.querySelector('.button-save').addEventListener('click', saveQuestionAsImage);
+
+        // Initial load
+        loadQuestions();
+    </script>
+
+    
+</body>
+</html>
